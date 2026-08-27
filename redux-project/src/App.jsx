@@ -10,7 +10,7 @@ const App = () => {
 
 
   return (
-    <div className='w-screen h-screen bg-black text-white'>
+    <div className='w-screen min-h-screen bg-black text-white scrollbar-none'>
       <Search />
       <Links />
       <Routes>

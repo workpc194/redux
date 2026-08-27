@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { gifApi, photoApi, videosApi } from '../api/mediaApi'
 import { addResult, setPage, setPageOne, setResult } from '../redux/features/searchSlice'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import ResultCard from './ResultCard'
+import LocomotiveScroll from 'locomotive-scroll'
 
 
 const ResultGrid = () => {
@@ -12,9 +13,15 @@ const ResultGrid = () => {
   const { query, activeTab, results, error, loading, page, hasStarted } = useSelector((store) => store.search)
   const [hasMore, setHasMore] = useState(true);
 
+  const scrollRef = useRef()
+  
+  const scroll = new LocomotiveScroll({
+    el: scrollRef,
+    smooth: true,
+    lerp: 0.002
+  })
+
   let data = []
-
-
   const getData = async () => {
     try {
       if (activeTab === 'photo') {
@@ -99,16 +106,16 @@ const ResultGrid = () => {
   if (loading) return <h1>Loading......</h1>
 
   return (
-    <div className='w-full h-[81%] overflow-auto scrollbar-none'>
+    <div>
       {hasStarted && (<InfiniteScroll
         dataLength={results.length}
         next={fetchMore}
         hasMore={hasMore}
         loader={<p>Loading...........</p>}
         endMessage={<p style={{ textAlign: 'center' }}>All items loaded.</p>}
-        className='w-full h-full flex flex-wrap justify-center gap-5 py-5 px-3 overflow-auto scrollbar-none'>
+        className='flex flex-wrap justify-center gap-5 py-5 px-3' ref={scrollRef}>
         {results.map((elem, idx) => {
-          return <ResultCard elem={elem} key={idx} />
+          return <ResultCard id='result-card' elem={elem} key={idx} />
         })}
       </InfiniteScroll>)}
     </div>
