@@ -4,7 +4,7 @@ import { gifApi, photoApi, videosApi } from '../api/mediaApi'
 import { addResult, setPage, setPageOne, setResult } from '../redux/features/searchSlice'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import ResultCard from './ResultCard'
-import LocomotiveScroll from 'locomotive-scroll'
+import Lenis from "lenis";
 
 
 const ResultGrid = () => {
@@ -13,13 +13,14 @@ const ResultGrid = () => {
   const { query, activeTab, results, error, loading, page, hasStarted } = useSelector((store) => store.search)
   const [hasMore, setHasMore] = useState(true);
 
-  const scrollRef = useRef()
-  
-  const scroll = new LocomotiveScroll({
-    el: scrollRef,
-    smooth: true,
-    lerp: 0.002
-  })
+  const lenis = new Lenis()
+
+  function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+
+requestAnimationFrame(raf);
 
   let data = []
   const getData = async () => {
@@ -113,7 +114,7 @@ const ResultGrid = () => {
         hasMore={hasMore}
         loader={<p>Loading...........</p>}
         endMessage={<p style={{ textAlign: 'center' }}>All items loaded.</p>}
-        className='flex flex-wrap justify-center gap-5 py-5 px-3' ref={scrollRef}>
+        className='flex flex-wrap justify-center gap-5 py-5 px-3'>
         {results.map((elem, idx) => {
           return <ResultCard id='result-card' elem={elem} key={idx} />
         })}
