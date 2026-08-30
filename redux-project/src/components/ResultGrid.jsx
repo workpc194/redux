@@ -71,7 +71,7 @@ requestAnimationFrame(raf);
         }
         data = responce.results.map((item) => ({
           id: item.id,
-          download_url: item.itemurl,
+          download_url: item.media_formats.mp4.url,
           url: item.media_formats.gif.url,
           title: item.title || 'GIF',
           type: 'gif'

@@ -1,2 +1,36 @@
 @import "tailwindcss";
 @import 'locomotive-scroll/dist/locomotive-scroll.css';
+
+
+@media screen and (max-width: 550px) {
+    form input{
+        width: 60%;
+        font-size: 18px;
+    }
+
+    form button{
+        width: 30%;
+    }
+
+    #link{
+        height: 50px;
+        padding: 0 3px;
+    }
+
+    #tab-btn{
+        width: 60%;
+        height: 50px;
+        padding: 0 3px;
+    }
+
+    #tab-btn button{
+        width: 32%;
+        font-size: 15px;
+    }
+
+    #nav-link{
+        width: 30%;
+        height: 50px;
+        font-size:12px;
+    }
+}

@@ -11,7 +11,7 @@ const Tabs = () => {
 
 
     return (
-        <div className='w-96 h-16 px-7 flex items-center justify-between'>
+        <div id='tab-btn' className='w-96 h-16 px-7 flex items-center justify-between'>
             <button id='photo' onClick={(e) => {
                 btnClick(e.target.id);
             }} className='w-24 h-10 text-center border rounded'>Photos</button>

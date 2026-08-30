@@ -5,7 +5,7 @@ import Tabs from './Tabs'
 
 const Links = () => {
   return (
-    <div className='w-full h-16 bg-cyan-700 px-7 flex items-center justify-between'>
+    <div id='link' className='w-full h-16 bg-cyan-700 px-7 flex items-center justify-between'>
       <Tabs />
       <NavLink />
     </div>

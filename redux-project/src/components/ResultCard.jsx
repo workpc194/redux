@@ -20,8 +20,8 @@ const ResultCard = (item, idx) => {
         {(activeTab === 'video') ? <video muted autoPlay loop className='w-full h-80 object-center object-cover rounded' src={item.elem.url}></video> : ''}
         {(activeTab === 'gif') ? <img loading='lazy' className='w-full h-80 object-center object-cover rounded' src={item.elem.url} /> : ''}
       </a>
-      <div className='w-full h-20 px-6 flex justify-between items-center'>
-        <h2 className='w-full h-full overflow-auto scrollbar-none'>{item.elem.title}</h2>
+      <div className='w-full h-20 px-6 pt-1.5 flex justify-between'>
+        <h2 className='h-full text-center overflow-auto scrollbar-none'>{item.elem.title}</h2>
         <button onClick={() => {
           btnClick(item.elem)
         }} className='w-16 h-6 flex items-center justify-evenly bg-emerald-500 rounded'>Save <Bookmark /></button>
