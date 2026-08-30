@@ -16,11 +16,11 @@ const ResultGrid = () => {
   const lenis = new Lenis()
 
   function raf(time) {
-  lenis.raf(time);
-  requestAnimationFrame(raf);
-}
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
 
-requestAnimationFrame(raf);
+  requestAnimationFrame(raf);
 
   let data = []
   const getData = async () => {
@@ -106,7 +106,20 @@ requestAnimationFrame(raf);
   if (error) return <h1>Error</h1>
   if (loading) return <h1>Loading......</h1>
 
-  return (
+  if(results.length < 1){
+    if(activeTab === 'photo'){
+      return(
+      <h1 className='text-4xl flex justify-center items-center text-center'>Search Any Photo...</h1>
+    )} else if(activeTab === 'video'){
+      return(
+      <h1 className='text-4xl flex justify-center items-center text-center'>Search Any Video...</h1>
+    )} else if(activeTab === 'gif'){
+      return(
+      <h1 className='text-4xl flex justify-center items-center text-center'>Search Any GIF...</h1>
+    )
+    }
+  } else{
+    return (
     <div>
       {hasStarted && (<InfiniteScroll
         dataLength={results.length}
@@ -120,7 +133,7 @@ requestAnimationFrame(raf);
         })}
       </InfiniteScroll>)}
     </div>
-  )
+  )}
 }
 
 export default ResultGrid
